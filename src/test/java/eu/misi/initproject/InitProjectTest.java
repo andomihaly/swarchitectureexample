@@ -1,6 +1,7 @@
 package eu.misi.initproject;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,6 +20,7 @@ class InitProjectTest {
     void testPositiveTestResult(){
         assertTrue(initProject.positiveAnswer());
     }
+    @Disabled
     @Test
     void testNegativeTastResult(){
         assertEquals("InitProjectReady", initProject.basicString());
