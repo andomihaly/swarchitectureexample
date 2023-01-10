@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <java.version>19</java.version>
+        <java.version>13</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -70,10 +70,14 @@
     <build>
         <plugins>
             <!-- this plugin need to start junit5 tests with maven test goal from Intellij, -->
+            <!-- time to time there is issue with run unit test from junit parallel (fork exception) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <forkMode>never</forkMode>
+                </configuration>
             </plugin>
             <!-- mutation test-->
             <plugin>
