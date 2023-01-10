@@ -12,7 +12,7 @@
         <maven.compiler.source>19</maven.compiler.source>
         <maven.compiler.target>19</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <junit-jupiter-engine.version>5.9.1</junit-jupiter-engine.version>
+        <junit.version>5.9.1</junit.version>
         <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
         <pitest-maven.version>1.10.3</pitest-maven.version>
         <pitest-junit5-plugin.version>1.1.0</pitest-junit5-plugin.version>
@@ -25,7 +25,14 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit-jupiter-engine.version}</version>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!--To run from IntelliJ we need API junit as well: Error opening zip file or JAR manifest missing : C:\Users\silve\.m2\repository/org/aspectj/ -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         <!-- log4j -->
@@ -62,21 +69,10 @@
     <build>
         <plugins>
             <!-- this plugin need to start junit5 tests with maven test goal from Intellij, -->
-            <!-- AspectJ compiler setting in configuration part -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
-                <configuration>
-                    <argLine>
-                        -javaagent:"${settings.localRepository}"/org/aspectj/
-                        aspectjweaver/${aspectj.version}/
-                        aspectjweaver-${aspectj.version}.jar
-                    </argLine>
-                    <useSystemClassLoader>true</useSystemClassLoader>
-                    <forkMode>always</forkMode>
-                    <skipTests>true</skipTests>
-                </configuration>
             </plugin>
             <!-- mutation test-->
             <plugin>
