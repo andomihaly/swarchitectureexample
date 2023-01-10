@@ -11,11 +11,14 @@ public class VehicleRegisterTest {
     void createAndSaveVehicleTest() {
         SpyVehicleStorage spyVehicleStorage = new SpyVehicleStorage();
         VehicleRegister vehicleRegister = new VehicleRegister(spyVehicleStorage, null);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("reqistrationNumber","AABB124");
-        vehicleRegister.createNewCar(jsonObject.toString());
+        JSONObject inputData =  TestHelper.getValidInputForNewVehicleRegistration();
 
-        Assertions.assertEquals("AABB124", spyVehicleStorage.vehicle.registrationNumber);
+
+        vehicleRegister.createNewCar(inputData.toString());
+        Assertions.assertEquals(1, spyVehicleStorage.numberOfSave);
+
+        vehicleRegister.createNewCar(inputData.toString());
+        Assertions.assertEquals(2, spyVehicleStorage.numberOfSave);
     }
 
     @Test
@@ -23,19 +26,17 @@ public class VehicleRegisterTest {
         VehicleStorage vehicleStorage = new NotWorkingVehicleStorage();
         SpyVehicleRegisterDisplay spyVehicleRegisterDisplay = new SpyVehicleRegisterDisplay();
         VehicleRegister vehicleRegister = new VehicleRegister(vehicleStorage, spyVehicleRegisterDisplay);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("reqistrationNumber","AABB124");
 
-        Assertions.assertDoesNotThrow(()-> vehicleRegister.createNewCar(jsonObject.toString()));
+        Assertions.assertDoesNotThrow(()-> vehicleRegister.createNewCar(TestHelper.getValidInputForNewVehicleRegistration().toString()));
         Assertions.assertEquals("vehicle storage is not working", spyVehicleRegisterDisplay.errorJson.getString("message"));
     }
 
     private class SpyVehicleStorage implements VehicleStorage {
-        public Vehicle vehicle;
+        public int numberOfSave=0;
 
         @Override
         public void saveVehicle(Vehicle vehicle) {
-            this.vehicle=vehicle;
+            numberOfSave++;
         }
 
     }

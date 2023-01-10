@@ -1,6 +1,9 @@
 package eu.misi.vehicleregister;
 
+import eu.misi.vehicleEntity.Owner;
+import eu.misi.vehicleEntity.OwnerBuilder;
 import eu.misi.vehicleEntity.Vehicle;
+import eu.misi.vehicleEntity.VehicleMotorEmissionType;
 import org.json.JSONObject;
 import org.slf4j.MDC;
 
@@ -38,10 +41,39 @@ public class VehicleRegister {
     private void createNewCarAPI(String json) {
         //getBusinessEvent
         //validate
-        //parse
-        JSONObject jsonObject = new JSONObject(json);
-        Vehicle vehicle = new Vehicle();
-        vehicle.registrationNumber=jsonObject.getString("reqistrationNumber");
+
+        NewVehicleDTO newVehicleDTO = NewVehicleDTOParser.parse(json);
+        Owner owner = createOwnerFrom(newVehicleDTO);
+        Vehicle vehicle = createANewVehicleEntity(newVehicleDTO, owner);
         vehicleStorage.saveVehicle(vehicle);
+    }
+
+    private Owner createOwnerFrom(NewVehicleDTO newVehicleDTO) {
+        return OwnerBuilder.aBuild()
+                .setFamilyName(newVehicleDTO.ownerFamilyName)
+                .setLastName(newVehicleDTO.ownerLastName)
+                .setCity(newVehicleDTO.ownerCity)
+                .setPostalCode(newVehicleDTO.ownerPostalCode)
+                .setStreet(newVehicleDTO.ownerStreet)
+                .setStreetNumber(newVehicleDTO.ownerStreetNumber)
+                .build();
+    }
+
+    private Vehicle createANewVehicleEntity(NewVehicleDTO newVehicleDTO, Owner owner) {
+        return VehicleManager.createNewVehicle(
+                newVehicleDTO.carType,
+                newVehicleDTO.registrationNumber,
+                newVehicleDTO.carFirstRegistrationDate,
+                newVehicleDTO.carEngineNumber,
+                newVehicleDTO.carModel,
+                newVehicleDTO.carColour,
+                newVehicleDTO.carEngineNumber,
+                newVehicleDTO.carNumberOfSeats,
+                newVehicleDTO.carMassInService,
+                newVehicleDTO.carMaxMass,
+                newVehicleDTO.carBrakedTrailer,
+                newVehicleDTO.carUnBrakedTrailer,
+                newVehicleDTO.carMotorEmissionType,
+                owner);
     }
 }

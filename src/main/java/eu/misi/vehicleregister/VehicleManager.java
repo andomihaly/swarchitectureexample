@@ -7,7 +7,7 @@ import java.time.LocalDate;
 public class VehicleManager {
 
     //education: without builder
-    public Vehicle createNewVehicle(VehicleType vehicleType, String registrationNumber, LocalDate registrationDate, String make, String model, VehicleColour vehicleColour, String engineNumber, int numberOfSeeats, int massInService, int maxMass, int brakedTrailer, int unBreakedTrailer, VehicleMotorEmissionType vehicleMotorEmissionType, Owner owner) {
+    public static Vehicle createNewVehicle(VehicleType vehicleType, String registrationNumber, LocalDate registrationDate, String make, String model, VehicleColour vehicleColour, String engineNumber, int numberOfSeeats, int massInService, int maxMass, int brakedTrailer, int unBreakedTrailer, VehicleMotorEmissionType vehicleMotorEmissionType, Owner owner) {
         Vehicle vehicle = new Vehicle();
         vehicle.type = vehicleType;
         vehicle.registrationNumber = registrationNumber;
