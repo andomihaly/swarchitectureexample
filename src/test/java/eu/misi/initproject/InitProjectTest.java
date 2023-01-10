@@ -20,11 +20,7 @@ class InitProjectTest {
     void testPositiveTestResult(){
         assertTrue(initProject.positiveAnswer());
     }
-    @Disabled
-    @Test
-    void testNegativeTastResult(){
-        assertEquals("InitProjectReady", initProject.basicString());
-    }
+
     @Test
     void testException(){
         InitProjectException ex = assertThrows(InitProjectException.class, () ->initProject.generateException());

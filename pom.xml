@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <java.version>13</java.version>
+        <java.version>19</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -108,8 +108,8 @@
                 <version>${aspectj-maven-plugin.version}</version>
                 <configuration>
                     <complianceLevel>19</complianceLevel>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <source>16</source>
+                    <target>16</target>
                     <showWeaveInfo>false</showWeaveInfo>
                     <verbose>false</verbose>
                     <Xlint>ignore</Xlint>
