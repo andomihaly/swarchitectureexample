@@ -1,6 +1,6 @@
 package eu.misi;
 
-import eu.misi.vehicleEntity.Vehicle;
+import eu.misi.vehicleentity.Vehicle;
 import eu.misi.vehicleregister.TestHelper;
 import eu.misi.vehicleregister.VehicleRegister;
 import eu.misi.vehicleregister.VehicleStorage;

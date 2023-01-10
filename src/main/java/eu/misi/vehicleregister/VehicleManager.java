@@ -1,6 +1,6 @@
 package eu.misi.vehicleregister;
 
-import eu.misi.vehicleEntity.*;
+import eu.misi.vehicleentity.*;
 
 import java.time.LocalDate;
 

@@ -1,9 +1,9 @@
 package eu.misi.vehicleregister;
 
 
-import eu.misi.vehicleEntity.VehicleColour;
-import eu.misi.vehicleEntity.VehicleMotorEmissionType;
-import eu.misi.vehicleEntity.VehicleType;
+import eu.misi.vehicleentity.VehicleColour;
+import eu.misi.vehicleentity.VehicleMotorEmissionType;
+import eu.misi.vehicleentity.VehicleType;
 import org.json.JSONObject;
 
 import java.time.LocalDate;

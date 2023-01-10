@@ -1,8 +1,8 @@
 package eu.misi.vehicleregister;
 
-import eu.misi.vehicleEntity.Owner;
-import eu.misi.vehicleEntity.OwnerBuilder;
-import eu.misi.vehicleEntity.Vehicle;
+import eu.misi.vehicleentity.Owner;
+import eu.misi.vehicleentity.OwnerBuilder;
+import eu.misi.vehicleentity.Vehicle;
 import org.json.JSONObject;
 import org.slf4j.MDC;
 

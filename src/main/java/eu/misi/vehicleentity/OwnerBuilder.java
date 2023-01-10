@@ -1,4 +1,4 @@
-package eu.misi.vehicleEntity;
+package eu.misi.vehicleentity;
 
 //education: builder in different class
 public class OwnerBuilder {

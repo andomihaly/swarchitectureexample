@@ -1,6 +1,6 @@
 package eu.misi.vehicleregister;
 
-import eu.misi.vehicleEntity.Vehicle;
+import eu.misi.vehicleentity.Vehicle;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

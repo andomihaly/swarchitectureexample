@@ -1,4 +1,4 @@
-package eu.misi.vehicleEntity;
+package eu.misi.vehicleentity;
 
 import java.time.LocalDate;
 
