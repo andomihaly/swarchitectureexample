@@ -1,4 +1,4 @@
-package eu.misi.vehicleregister;
+package eu.misi.vehicleEntity;
 
 //education: builder in different class
 public class OwnerBuilder {
@@ -10,9 +10,10 @@ public class OwnerBuilder {
     private String street;
     private int streetNumber;
 
-    public static OwnerBuilder aBuild(){
+    public static OwnerBuilder aBuild() {
         return new OwnerBuilder();
     }
+
     public Owner build() {
         Owner owner = new Owner();
         owner.familyName = familyName;
@@ -37,7 +38,7 @@ public class OwnerBuilder {
     }
 
     public OwnerBuilder setCity(String city) {
-        this.city=city;
+        this.city = city;
         return this;
     }
 

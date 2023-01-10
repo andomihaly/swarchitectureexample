@@ -1,12 +1,13 @@
-package eu.misi.vehicleregister;
+package eu.misi.vehicleEntity;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class OwnerBuilderTest {
     @Test
-    void createOwner(){
+    void createOwner() {
         Owner owner = OwnerBuilder.aBuild()
                 .setFamilyName("FamilyName")
                 .setLastName("LastName")

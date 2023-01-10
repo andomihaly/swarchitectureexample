@@ -1,4 +1,4 @@
-package eu.misi.vehicleregister;
+package eu.misi.vehicleEntity;
 
 public enum VehicleMotorEmissionType {
     Euro0,

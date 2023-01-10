@@ -1,4 +1,4 @@
-package eu.misi.vehicleregister;
+package eu.misi.vehicleEntity;
 
 public class Address {
     public String city;
@@ -35,10 +35,12 @@ public class Address {
             this.postalCode = postalCode;
             return this;
         }
+
         public AddressBuilder setStreet(String street) {
             this.street = street;
             return this;
         }
+
         public AddressBuilder setStreetNumber(int streetNumber) {
             this.streetNumber = streetNumber;
             return this;
