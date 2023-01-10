@@ -3,7 +3,6 @@ package eu.misi.vehicleregister;
 import eu.misi.vehicleEntity.Owner;
 import eu.misi.vehicleEntity.OwnerBuilder;
 import eu.misi.vehicleEntity.Vehicle;
-import eu.misi.vehicleEntity.VehicleMotorEmissionType;
 import org.json.JSONObject;
 import org.slf4j.MDC;
 
@@ -12,9 +11,16 @@ import java.util.UUID;
 public class VehicleRegister {
     private VehicleStorage vehicleStorage;
     private VehicleRegisterDisplay vehicleRegisterDisplay;
+
     public VehicleRegister(VehicleStorage vehicleStorage, VehicleRegisterDisplay vehicleRegisterDisplay) {
         this.vehicleStorage = vehicleStorage;
         this.vehicleRegisterDisplay = vehicleRegisterDisplay;
+    }
+
+    private static JSONObject createErrorResponse(Exception e) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("message", e.getMessage());
+        return jsonObject;
     }
 
     public void createNewCar(String json) {
@@ -30,12 +36,6 @@ public class VehicleRegister {
 
     private void prepareErrorResponseAndSend(Exception e) {
         vehicleRegisterDisplay.displayError(createErrorResponse(e).toString());
-    }
-
-    private static JSONObject createErrorResponse(Exception e) {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("message", e.getMessage());
-        return jsonObject;
     }
 
     private void createNewCarAPI(String json) {
