@@ -16,6 +16,9 @@
         <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
         <pitest-maven.version>1.10.3</pitest-maven.version>
         <pitest-junit5-plugin.version>1.1.0</pitest-junit5-plugin.version>
+        <aspectj.version>1.9.7</aspectj.version>
+        <aspectj-maven-plugin.version>1.14.0</aspectj-maven-plugin.version>
+        <exec-maven-plugin.version>3.1.0</exec-maven-plugin.version>
     </properties>
     <dependencies>
         <!-- junit5-->
@@ -25,14 +28,55 @@
             <version>${junit-jupiter-engine.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- log4j -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.19.0</version>
+        </dependency>
+        <!-- log4j -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.19.0</version>
+        </dependency>
+        <!-- SLF4J -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.19.0</version>
+        </dependency>
+        <!-- AspectJ dependencies -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${aspectj.version}</version>
+        </dependency>
+        <!-- AspectJ dependencies -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
-            <!-- this plugin need to start junit5 tests with maven test goal from Intellij-->
+            <!-- this plugin need to start junit5 tests with maven test goal from Intellij, -->
+            <!-- AspectJ compiler setting in configuration part -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}"/org/aspectj/
+                        aspectjweaver/${aspectj.version}/
+                        aspectjweaver-${aspectj.version}.jar
+                    </argLine>
+                    <useSystemClassLoader>true</useSystemClassLoader>
+                    <forkMode>always</forkMode>
+                    <skipTests>true</skipTests>
+                </configuration>
             </plugin>
             <!-- mutation test-->
             <plugin>
@@ -55,6 +99,41 @@
                         <version>${pitest-junit5-plugin.version}</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <!-- AspectJ compiler setting -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>aspectj-maven-plugin</artifactId>
+                <version>${aspectj-maven-plugin.version}</version>
+                <configuration>
+                    <complianceLevel>19</complianceLevel>
+                    <source>16</source>
+                    <target>16</target>
+                    <showWeaveInfo>false</showWeaveInfo>
+                    <verbose>false</verbose>
+                    <Xlint>ignore</Xlint>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <!-- use this goal to weave all your main classes -->
+                            <goal>compile</goal>
+                            <!-- use this goal to weave all your test classes -->
+                            <goal>test-compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- where is the main method-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>${exec-maven-plugin.version}</version>
+                <configuration>
+                    <mainClass>eu.misi.starter.Starter</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>
