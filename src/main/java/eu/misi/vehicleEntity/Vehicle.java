@@ -10,12 +10,11 @@ public class Vehicle {
     public String model;
     public VehicleColour colour;
     public String engineNumber;
-
-    public int numberOfSeeats;
+    public int numberOfSeats;
     public int massInService;
     public int maxMass;
     public int brakedTrailer;
-    public int unBreakedTrailer;
+    public int unBrakedTrailer;
     public VehicleMotorEmissionType motorEmissionType;
     public Owner owner;
 }

@@ -37,11 +37,11 @@ public class VehicleManagerTest {
         assertEquals(model, vehicle.model);
         assertEquals(vehicleColour, vehicle.colour);
         assertEquals(engineNumber, vehicle.engineNumber);
-        assertEquals(numberOfSeeats, vehicle.numberOfSeeats);
+        assertEquals(numberOfSeeats, vehicle.numberOfSeats);
         assertEquals(massInService, vehicle.massInService);
         assertEquals(maxMass, vehicle.maxMass);
         assertEquals(brakedTrailer, vehicle.brakedTrailer);
-        assertEquals(unBreakedTrailer, vehicle.unBreakedTrailer);
+        assertEquals(unBreakedTrailer, vehicle.unBrakedTrailer);
         assertNotNull(vehicle.owner);
     }
 }

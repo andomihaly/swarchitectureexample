@@ -16,11 +16,11 @@ public class VehicleManager {
         vehicle.model = model;
         vehicle.colour = vehicleColour;
         vehicle.engineNumber = engineNumber;
-        vehicle.numberOfSeeats = numberOfSeeats;
+        vehicle.numberOfSeats = numberOfSeeats;
         vehicle.massInService = massInService;
         vehicle.maxMass = maxMass;
         vehicle.brakedTrailer = brakedTrailer;
-        vehicle.unBreakedTrailer = unBreakedTrailer;
+        vehicle.unBrakedTrailer = unBreakedTrailer;
         vehicle.motorEmissionType = vehicleMotorEmissionType;
         vehicle.owner = owner;
         return vehicle;
