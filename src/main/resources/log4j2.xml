@@ -1,40 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN" monitorInterval="30">
-  <Properties>
-    <Property name="LOG_DIR">logs</Property>
-    <Property name="itlog">it_log</Property>
-    <Property name="logextension">log</Property>
-    <Property name="businesslog">business_log</Property>
-    <Property name="LOG_PATTERN_WITH_USER">%X{transactionID} %d{yyyy-MM-dd HH:mm:ss} %-5p %c{1} %X{user} - %m%n</Property>
-    <Property name="BUSSINES_PATTERN">%X{businessCaseID} %d{yyyy-MM-dd HH:mm:ss} %X{transactionID} - %m%n</Property>
-  </Properties>
-  <Appenders>
-    <RollingFile
-            name="rollingFile"
-            fileName="${LOG_DIR}\${itlog}.${logextension}"
-            filePattern="${LOG_DIR}\${itlog}.%i.${logextension}.gz"
-            ignoreExceptions="false">
-      <PatternLayout pattern="${LOG_PATTERN_WITH_USER}"/>
-      <Policies>
-        <SizeBasedTriggeringPolicy size="500KB" />
-      </Policies>
-      <DefaultRolloverStrategy max="5">
-        <Delete basePath="${LOG_DIR}" maxDepth="2">
-          <IfFileName glob="*/${itlog}-*.${logextension}.gz" />
-          <IfLastModified age="P30D" />
-        </Delete>
-      </DefaultRolloverStrategy>
-    </RollingFile>
-    <File name="businesslog" fileName="${LOG_DIR}\${businesslog}.${logextension}" append="true">
-      <PatternLayout pattern="${BUSSINES_PATTERN}"/>
-    </File>
-  </Appenders>
-  <Loggers>
-    <Logger name="BusinessLog" level="trace" additivity="false">
-      <AppenderRef ref="businesslog"/>
-    </Logger>
-    <Root level="trace">
-      <AppenderRef ref="rollingFile" />
-    </Root>
-  </Loggers>
+    <Properties>
+        <Property name="LOG_DIR">logs</Property>
+        <Property name="itlog">it_log</Property>
+        <Property name="logextension">log</Property>
+        <Property name="businesslog">business_log</Property>
+        <Property name="LOG_PATTERN_WITH_USER">%X{transactionID} %d{yyyy-MM-dd HH:mm:ss} %-5p %c{1} %X{user} - %m%n
+        </Property>
+        <Property name="BUSSINES_PATTERN">%X{businessCaseID} %d{yyyy-MM-dd HH:mm:ss} %X{transactionID} - %m%n</Property>
+    </Properties>
+    <Appenders>
+        <RollingFile
+                name="rollingFile"
+                fileName="${LOG_DIR}\${itlog}.${logextension}"
+                filePattern="${LOG_DIR}\${itlog}.%i.${logextension}.gz"
+                ignoreExceptions="false">
+            <PatternLayout pattern="${LOG_PATTERN_WITH_USER}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="500KB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="5">
+                <Delete basePath="${LOG_DIR}" maxDepth="2">
+                    <IfFileName glob="*/${itlog}-*.${logextension}.gz"/>
+                    <IfLastModified age="P30D"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+        <File name="businesslog" fileName="${LOG_DIR}\${businesslog}.${logextension}" append="true">
+            <PatternLayout pattern="${BUSSINES_PATTERN}"/>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Logger name="BusinessLog" level="trace" additivity="false">
+            <AppenderRef ref="businesslog"/>
+        </Logger>
+        <Root level="trace">
+            <AppenderRef ref="rollingFile"/>
+        </Root>
+    </Loggers>
 </Configuration>

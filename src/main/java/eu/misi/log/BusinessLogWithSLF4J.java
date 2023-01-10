@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 
-public class BusinessLogWithSLF4J implements BusinessLog{
+public class BusinessLogWithSLF4J implements BusinessLog {
     Logger businessLogger = LoggerFactory.getLogger("BusinessLog");
 
     @Override

@@ -17,17 +17,17 @@ public class ITApplicationLogger {
     }
 
     @Before("myTraceCall()")
-    public void logBefore(JoinPoint joinPoint){
+    public void logBefore(JoinPoint joinPoint) {
         org.slf4j.Logger logger = LoggerFactory.getLogger(joinPoint.getSignature().getDeclaringType());
         if (logger.isInfoEnabled()) {
             logger.info("Method will start: " + joinPoint.getStaticPart().getSignature().toString());
         }
     }
+
     @After("myTraceCall()")
-    public void logAfter(JoinPoint joinPoint)
-    {
+    public void logAfter(JoinPoint joinPoint) {
         org.slf4j.Logger logger = LoggerFactory.getLogger(joinPoint.getSignature().getDeclaringType());
-        if (logger.isInfoEnabled()){
+        if (logger.isInfoEnabled()) {
             logger.info("Signiture: " + joinPoint.getStaticPart().getSignature().toString());
             for (int i = 0; i < joinPoint.getArgs().length; i++) {
                 logger.info("parameter: " + joinPoint.getArgs()[i]);
@@ -35,13 +35,15 @@ public class ITApplicationLogger {
             logger.info("Method stoped: " + joinPoint.getSignature());
         }
     }
-    @AfterReturning(pointcut="myTraceCall()", returning="returnValue")
+
+    @AfterReturning(pointcut = "myTraceCall()", returning = "returnValue")
     public void afterReturning(JoinPoint joinPoint, Object returnValue) {
-        if (returnValue != null){
+        if (returnValue != null) {
             org.slf4j.Logger logger = LoggerFactory.getLogger(joinPoint.getSignature().getDeclaringType());
-            logger.info("Return value: "+ returnValue.toString());
+            logger.info("Return value: " + returnValue.toString());
         }
     }
+
     @AfterThrowing(pointcut = "apiCall()", throwing = "exception")
     public void errorInterceptor(JoinPoint joinPoint, Exception exception) {
         Logger logger = LoggerFactory.getLogger(joinPoint.getSignature().getDeclaringType());

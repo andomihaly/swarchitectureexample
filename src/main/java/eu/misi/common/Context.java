@@ -5,7 +5,8 @@ import eu.misi.log.BusinessLogWithSLF4J;
 
 public class Context {
     public static BusinessLog businessLog = new BusinessLogWithSLF4J();
-    public static BusinessLog getBusinesLog(){
+
+    public static BusinessLog getBusinesLog() {
         return businessLog;
     }
 }

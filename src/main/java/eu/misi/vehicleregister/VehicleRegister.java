@@ -1,26 +1,28 @@
 package eu.misi.vehicleregister;
 
-import java.time.LocalDate;
+import eu.misi.vehicleEntity.Vehicle;
+import org.json.JSONObject;
+import org.slf4j.MDC;
+
+import java.util.UUID;
 
 public class VehicleRegister {
+    private VehicleStorage vehicleStorage;
+    public VehicleRegister(VehicleStorage vehicleStorage) {
+        this.vehicleStorage = vehicleStorage;
+    }
 
-    //education: without builder
-    public Vehicle createNewVehicle(VehicleType vehicleType, String registrationNumber, LocalDate registrationDate, String make, String model, VehicleColour vehicleColour, String engineNumber, int numberOfSeeats, int massInService, int maxMass, int brakedTrailer, int unBreakedTrailer, VehicleMotorEmissionType vehicleMotorEmissionType, Owner owner) {
+    public void createNewCar(String json) {
+        createNewCarAPI(json);
+    }
+
+    private void createNewCarAPI(String json) {
+        //getBusinessEvent
+        //validate
+        //parse
+        JSONObject jsonObject = new JSONObject(json);
         Vehicle vehicle = new Vehicle();
-        vehicle.type = vehicleType;
-        vehicle.registrationNumber = registrationNumber;
-        vehicle.firstRegistrationDate = registrationDate;
-        vehicle.make = make;
-        vehicle.model = model;
-        vehicle.colour = vehicleColour;
-        vehicle.engineNumber = engineNumber;
-        vehicle.numberOfSeeats = numberOfSeeats;
-        vehicle.massInService = massInService;
-        vehicle.maxMass = maxMass;
-        vehicle.brakedTrailer = brakedTrailer;
-        vehicle.unBreakedTrailer = unBreakedTrailer;
-        vehicle.motorEmissionType = vehicleMotorEmissionType;
-        vehicle.owner = owner;
-        return vehicle;
+        vehicle.registrationNumber=jsonObject.getString("reqistrationNumber");
+        vehicleStorage.saveVehicle(vehicle);
     }
 }
